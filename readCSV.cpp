@@ -1,10 +1,10 @@
 #include "readCSV.h"
+#include <Eigen/Dense>
 #include <fstream>
 #include <sstream>
 
-void readCSV(const std::string& filename, int rows, int cols, Eigen::MatrixXd& output) {
-    // Initialize output matrix
-    output = Eigen::MatrixXd::Zero(rows, cols);
+Eigen::MatrixXd readCSV(const std::string& filename, int rows, int cols) {
+    Eigen::MatrixXd output(rows, cols); // Initialize matrix with given dimensions
 
     std::ifstream file(filename);
 
@@ -23,4 +23,7 @@ void readCSV(const std::string& filename, int rows, int cols, Eigen::MatrixXd& o
 
         row++;
     }
+
+    file.close();
+    return output;
 }
